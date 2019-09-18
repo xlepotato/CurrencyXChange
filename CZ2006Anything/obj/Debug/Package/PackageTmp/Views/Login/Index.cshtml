@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "/Views/Shared/Header.cshtml";
+}
+
+Username:<input type="text" id="username">
+Password:<input type="password" id="password">
+<input type="button" id="btnLogin" value="Login">
+<label id="lblSuccess"></label>
+<script>
+    $("#btnLogin").click(function () {
+        Login();
+    });
+    function Login() {
+        var Data = {
+            Username: $("#username").val(),
+            Password: $("#password").val(),
+        }
+        $.ajax({
+            url: '@Url.Action("Login")',
+            data: Data,
+            typr: "GET",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            success: function (result) {
+                $("#lblSuccess").html("");
+                $("#lblSuccess").append(result);
+            }
+        });
+    }
+</script>
