@@ -6,6 +6,18 @@
     <edmx:Diagrams>
       <Diagram DiagramId="ecff33c2b0184f15be64be48f4fb2798" Name="Diagram1">
         <EntityTypeShape EntityType="cz2006anythingModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cz2006anythingModel.Currency" Width="1.5" PointX="5.625" PointY="3.25" />
+        <EntityTypeShape EntityType="cz2006anythingModel.ExchangeRate" Width="1.5" PointX="7.875" PointY="2" />
+        <EntityTypeShape EntityType="cz2006anythingModel.MoneyChanger" Width="1.5" PointX="3.25" PointY="0.875" />
+        <EntityTypeShape EntityType="cz2006anythingModel.sysdiagram" Width="1.5" PointX="2.625" PointY="4" />
+        <EntityTypeShape EntityType="cz2006anythingModel.Transaction" Width="1.5" PointX="10.875" PointY="1.75" />
+        <AssociationConnector Association="cz2006anythingModel.FK_ExchangeRate_Currency" />
+        <AssociationConnector Association="cz2006anythingModel.FK_ExchangeRate_Currency1" />
+        <AssociationConnector Association="cz2006anythingModel.FK_Transaction_Currency" />
+        <AssociationConnector Association="cz2006anythingModel.FK_Transaction_Currency1" />
+        <AssociationConnector Association="cz2006anythingModel.FK_ExchangeRate_MoneyChanger" />
+        <AssociationConnector Association="cz2006anythingModel.FK_Transaction_MoneyChanger" />
+        <AssociationConnector Association="cz2006anythingModel.FK_User_MoneyChanger" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

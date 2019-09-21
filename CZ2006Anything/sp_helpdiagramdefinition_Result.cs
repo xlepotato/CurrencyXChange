@@ -10,15 +10,10 @@
 namespace CZ2006Anything
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class User
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public int MobileNumber { get; set; }
-        public Nullable<int> MoneyChangerId { get; set; }
-    
-        public virtual MoneyChanger MoneyChanger { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -12,13 +12,19 @@ namespace CZ2006Anything
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Transaction
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public int MobileNumber { get; set; }
-        public Nullable<int> MoneyChangerId { get; set; }
+        public int Id { get; set; }
+        public double Paid { get; set; }
+        public double Exchanged { get; set; }
+        public double Rate { get; set; }
+        public int PaidCurrId { get; set; }
+        public int ExchangedCurrId { get; set; }
+        public System.DateTime Date { get; set; }
+        public int MoneyChangerId { get; set; }
     
+        public virtual Currency Currency { get; set; }
+        public virtual Currency Currency1 { get; set; }
         public virtual MoneyChanger MoneyChanger { get; set; }
     }
 }
