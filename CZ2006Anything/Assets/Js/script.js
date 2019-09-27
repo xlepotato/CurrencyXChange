@@ -25,10 +25,8 @@
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
             success: function (result) {
-
-                $("#tbExchangeTo").val(result)
-       
-        
+                $("#tbExchangeTo").val(result.Amount);
+                $("#lblResult").text(result.Rate);
             }
         });
     }
@@ -45,8 +43,8 @@
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
             success: function (result) {
-                $("#tbExchangeFrom").val(result)
-                
+                $("#tbExchangeFrom").val(result.Amount);
+                $("#lblResult").text(result.Rate);
             }
         });
     }

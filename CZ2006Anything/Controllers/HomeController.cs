@@ -38,7 +38,8 @@ namespace CZ2006Anything.Controllers
         public ActionResult GetCurrency(float ExchangeAmount,string ExchangeFrom, string ExchangeTo)
         {
                 float amount = (ExchangeAmount/rates.Where(z => z.Key == ExchangeFrom).FirstOrDefault().Value) * rates.Where(z => z.Key == ExchangeTo).FirstOrDefault().Value;
-                return Json(amount
+                var result = new { Amount = amount , Rate = (1 / rates.Where(z => z.Key == ExchangeFrom).FirstOrDefault().Value) * rates.Where(z => z.Key == ExchangeTo).FirstOrDefault().Value};
+                return Json(result
                , JsonRequestBehavior.AllowGet);
             
         }
