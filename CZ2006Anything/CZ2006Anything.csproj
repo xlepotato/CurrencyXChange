@@ -98,6 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Css\bootstrap.min.css" />
+    <Content Include="Assets\Css\footer.css" />
+    <Content Include="Assets\Css\header2ss.css" />
+    <Content Include="Assets\Css\stylesheet.css" />
     <Content Include="Assets\Images\cat.jpg" />
     <Content Include="Assets\Js\bootstrap.min.js" />
     <Content Include="Assets\Js\jquery.min.js" />
@@ -112,6 +115,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Assets\Images\logo.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -135,6 +139,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Assets\Css\header.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +209,7 @@
     <Content Include="Views\ScanQr\Index.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\Transactions\Detail.cshtml" />
+    <Content Include="Views\Shared\HeaderWithLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

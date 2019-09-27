@@ -1,0 +1,24 @@
+﻿.container{
+    padding-top: 4%;
+    margin:auto;
+    width:50%;
+}
+
+.col-sm-4 {
+    width: 50%;
+    height: 10%;
+    margin:auto;
+    padding:0;
+}
+
+.activeNow{
+   float:right;
+   border:none;
+   font-size: 22pt;
+   
+}
+
+.inactiveNow{
+    padding-left: 10px;
+    font-size: 22pt;
+}
