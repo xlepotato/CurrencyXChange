@@ -1,5 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="cz2006anythingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Symbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Flag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ExchangeRates" Relationship="Self.FK_ExchangeRate_Currency" FromRole="Currency" ToRole="ExchangeRate" />
+    <NavigationProperty Name="ExchangeRates1" Relationship="Self.FK_ExchangeRate_Currency1" FromRole="Currency" ToRole="ExchangeRate" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_Currency" FromRole="Currency" ToRole="Transaction" />
+    <NavigationProperty Name="Transactions1" Relationship="Self.FK_Transaction_Currency1" FromRole="Currency" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="ExchangeRate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SellingRate" Type="Double" Nullable="false" />
+    <Property Name="BuyingRate" Type="Double" Nullable="false" />
+    <Property Name="SellingRateCurrencyId" Type="Int32" Nullable="false" />
+    <Property Name="BuyingRateCurrencyId" Type="Int32" Nullable="false" />
+    <Property Name="MoneyChangerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Currency" Relationship="Self.FK_ExchangeRate_Currency" FromRole="ExchangeRate" ToRole="Currency" />
+    <NavigationProperty Name="Currency1" Relationship="Self.FK_ExchangeRate_Currency1" FromRole="ExchangeRate" ToRole="Currency" />
+    <NavigationProperty Name="MoneyChanger" Relationship="Self.FK_ExchangeRate_MoneyChanger" FromRole="ExchangeRate" ToRole="MoneyChanger" />
+  </EntityType>
+  <EntityType Name="MoneyChanger">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OpeningHours" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ExchangeRates" Relationship="Self.FK_ExchangeRate_MoneyChanger" FromRole="MoneyChanger" ToRole="ExchangeRate" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_MoneyChanger" FromRole="MoneyChanger" ToRole="Transaction" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_MoneyChanger" FromRole="MoneyChanger" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Paid" Type="Double" Nullable="false" />
+    <Property Name="Exchanged" Type="Double" Nullable="false" />
+    <Property Name="Rate" Type="Double" Nullable="false" />
+    <Property Name="PaidCurrId" Type="Int32" Nullable="false" />
+    <Property Name="ExchangedCurrId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="MoneyChangerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Currency" Relationship="Self.FK_Transaction_Currency" FromRole="Transaction" ToRole="Currency" />
+    <NavigationProperty Name="Currency1" Relationship="Self.FK_Transaction_Currency1" FromRole="Transaction" ToRole="Currency" />
+    <NavigationProperty Name="MoneyChanger" Relationship="Self.FK_Transaction_MoneyChanger" FromRole="Transaction" ToRole="MoneyChanger" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="Username" />
@@ -8,40 +73,124 @@
     <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="MobileNumber" Type="Int32" Nullable="false" />
     <Property Name="MoneyChangerId" Type="Int32" />
-    <NavigationProperty Name="MoneyChanger" Relationship="cz2006anythingModel.FK_User_MoneyChanger" FromRole="User" ToRole="MoneyChanger" />
+    <NavigationProperty Name="MoneyChanger" Relationship="Self.FK_User_MoneyChanger" FromRole="User" ToRole="MoneyChanger" />
   </EntityType>
+  <Association Name="FK_ExchangeRate_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="ExchangeRate" Type="Self.ExchangeRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExchangeRate">
+        <PropertyRef Name="SellingRateCurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExchangeRate_Currency1">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="ExchangeRate" Type="Self.ExchangeRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExchangeRate">
+        <PropertyRef Name="BuyingRateCurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Currency">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="PaidCurrId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Currency1">
+    <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="ExchangedCurrId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExchangeRate_MoneyChanger">
+    <End Role="MoneyChanger" Type="Self.MoneyChanger" Multiplicity="1" />
+    <End Role="ExchangeRate" Type="Self.ExchangeRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MoneyChanger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExchangeRate">
+        <PropertyRef Name="MoneyChangerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_MoneyChanger">
+    <End Role="MoneyChanger" Type="Self.MoneyChanger" Multiplicity="1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MoneyChanger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="MoneyChangerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_MoneyChanger">
+    <End Role="MoneyChanger" Type="Self.MoneyChanger" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MoneyChanger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="MoneyChangerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="cz2006anythingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Currencies" EntityType="Self.Currency" />
+    <EntitySet Name="ExchangeRates" EntityType="Self.ExchangeRate" />
+    <EntitySet Name="MoneyChangers" EntityType="Self.MoneyChanger" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
     <EntitySet Name="Users" EntityType="Self.User" />
-    <EntitySet Name="Currencies" EntityType="cz2006anythingModel.Currency" />
-    <EntitySet Name="ExchangeRates" EntityType="cz2006anythingModel.ExchangeRate" />
-    <EntitySet Name="MoneyChangers" EntityType="cz2006anythingModel.MoneyChanger" />
-    <EntitySet Name="sysdiagrams" EntityType="cz2006anythingModel.sysdiagram" />
-    <EntitySet Name="Transactions" EntityType="cz2006anythingModel.Transaction" />
-    <AssociationSet Name="FK_ExchangeRate_Currency" Association="cz2006anythingModel.FK_ExchangeRate_Currency">
+    <AssociationSet Name="FK_ExchangeRate_Currency" Association="Self.FK_ExchangeRate_Currency">
       <End Role="Currency" EntitySet="Currencies" />
       <End Role="ExchangeRate" EntitySet="ExchangeRates" />
     </AssociationSet>
-    <AssociationSet Name="FK_ExchangeRate_Currency1" Association="cz2006anythingModel.FK_ExchangeRate_Currency1">
+    <AssociationSet Name="FK_ExchangeRate_Currency1" Association="Self.FK_ExchangeRate_Currency1">
       <End Role="Currency" EntitySet="Currencies" />
       <End Role="ExchangeRate" EntitySet="ExchangeRates" />
     </AssociationSet>
-    <AssociationSet Name="FK_Transaction_Currency" Association="cz2006anythingModel.FK_Transaction_Currency">
+    <AssociationSet Name="FK_Transaction_Currency" Association="Self.FK_Transaction_Currency">
       <End Role="Currency" EntitySet="Currencies" />
       <End Role="Transaction" EntitySet="Transactions" />
     </AssociationSet>
-    <AssociationSet Name="FK_Transaction_Currency1" Association="cz2006anythingModel.FK_Transaction_Currency1">
+    <AssociationSet Name="FK_Transaction_Currency1" Association="Self.FK_Transaction_Currency1">
       <End Role="Currency" EntitySet="Currencies" />
       <End Role="Transaction" EntitySet="Transactions" />
     </AssociationSet>
-    <AssociationSet Name="FK_ExchangeRate_MoneyChanger" Association="cz2006anythingModel.FK_ExchangeRate_MoneyChanger">
+    <AssociationSet Name="FK_ExchangeRate_MoneyChanger" Association="Self.FK_ExchangeRate_MoneyChanger">
       <End Role="MoneyChanger" EntitySet="MoneyChangers" />
       <End Role="ExchangeRate" EntitySet="ExchangeRates" />
     </AssociationSet>
-    <AssociationSet Name="FK_Transaction_MoneyChanger" Association="cz2006anythingModel.FK_Transaction_MoneyChanger">
+    <AssociationSet Name="FK_Transaction_MoneyChanger" Association="Self.FK_Transaction_MoneyChanger">
       <End Role="MoneyChanger" EntitySet="MoneyChangers" />
       <End Role="Transaction" EntitySet="Transactions" />
     </AssociationSet>
-    <AssociationSet Name="FK_User_MoneyChanger" Association="cz2006anythingModel.FK_User_MoneyChanger">
+    <AssociationSet Name="FK_User_MoneyChanger" Association="Self.FK_User_MoneyChanger">
       <End Role="MoneyChanger" EntitySet="MoneyChangers" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
@@ -76,154 +225,6 @@
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
-  <EntityType Name="Currency">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Symbol" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Flag" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="ExchangeRates" Relationship="cz2006anythingModel.FK_ExchangeRate_Currency" FromRole="Currency" ToRole="ExchangeRate" />
-    <NavigationProperty Name="ExchangeRates1" Relationship="cz2006anythingModel.FK_ExchangeRate_Currency1" FromRole="Currency" ToRole="ExchangeRate" />
-    <NavigationProperty Name="Transactions" Relationship="cz2006anythingModel.FK_Transaction_Currency" FromRole="Currency" ToRole="Transaction" />
-    <NavigationProperty Name="Transactions1" Relationship="cz2006anythingModel.FK_Transaction_Currency1" FromRole="Currency" ToRole="Transaction" />
-  </EntityType>
-  <EntityType Name="ExchangeRate">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ExchangedFromId" Type="Int32" Nullable="false" />
-    <Property Name="ExchangedToId" Type="Int32" Nullable="false" />
-    <Property Name="MoneyChangerId" Type="Int32" Nullable="false" />
-    <Property Name="Rate" Type="Double" Nullable="false" />
-    <NavigationProperty Name="Currency" Relationship="cz2006anythingModel.FK_ExchangeRate_Currency" FromRole="ExchangeRate" ToRole="Currency" />
-    <NavigationProperty Name="Currency1" Relationship="cz2006anythingModel.FK_ExchangeRate_Currency1" FromRole="ExchangeRate" ToRole="Currency" />
-    <NavigationProperty Name="MoneyChanger" Relationship="cz2006anythingModel.FK_ExchangeRate_MoneyChanger" FromRole="ExchangeRate" ToRole="MoneyChanger" />
-  </EntityType>
-  <EntityType Name="MoneyChanger">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="OpeningHours" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="ExchangeRates" Relationship="cz2006anythingModel.FK_ExchangeRate_MoneyChanger" FromRole="MoneyChanger" ToRole="ExchangeRate" />
-    <NavigationProperty Name="Transactions" Relationship="cz2006anythingModel.FK_Transaction_MoneyChanger" FromRole="MoneyChanger" ToRole="Transaction" />
-    <NavigationProperty Name="Users" Relationship="cz2006anythingModel.FK_User_MoneyChanger" FromRole="MoneyChanger" ToRole="User" />
-  </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="Transaction">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Paid" Type="Double" Nullable="false" />
-    <Property Name="Exchanged" Type="Double" Nullable="false" />
-    <Property Name="Rate" Type="Double" Nullable="false" />
-    <Property Name="PaidCurrId" Type="Int32" Nullable="false" />
-    <Property Name="ExchangedCurrId" Type="Int32" Nullable="false" />
-    <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
-    <Property Name="MoneyChangerId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Currency" Relationship="cz2006anythingModel.FK_Transaction_Currency" FromRole="Transaction" ToRole="Currency" />
-    <NavigationProperty Name="Currency1" Relationship="cz2006anythingModel.FK_Transaction_Currency1" FromRole="Transaction" ToRole="Currency" />
-    <NavigationProperty Name="MoneyChanger" Relationship="cz2006anythingModel.FK_Transaction_MoneyChanger" FromRole="Transaction" ToRole="MoneyChanger" />
-  </EntityType>
-  <Association Name="FK_ExchangeRate_Currency">
-    <End Type="cz2006anythingModel.Currency" Role="Currency" Multiplicity="1" />
-    <End Type="cz2006anythingModel.ExchangeRate" Role="ExchangeRate" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Currency">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ExchangeRate">
-        <PropertyRef Name="ExchangedFromId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ExchangeRate_Currency1">
-    <End Type="cz2006anythingModel.Currency" Role="Currency" Multiplicity="1" />
-    <End Type="cz2006anythingModel.ExchangeRate" Role="ExchangeRate" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Currency">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ExchangeRate">
-        <PropertyRef Name="ExchangedToId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Transaction_Currency">
-    <End Type="cz2006anythingModel.Currency" Role="Currency" Multiplicity="1" />
-    <End Type="cz2006anythingModel.Transaction" Role="Transaction" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Currency">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Transaction">
-        <PropertyRef Name="PaidCurrId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Transaction_Currency1">
-    <End Type="cz2006anythingModel.Currency" Role="Currency" Multiplicity="1" />
-    <End Type="cz2006anythingModel.Transaction" Role="Transaction" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Currency">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Transaction">
-        <PropertyRef Name="ExchangedCurrId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ExchangeRate_MoneyChanger">
-    <End Type="cz2006anythingModel.MoneyChanger" Role="MoneyChanger" Multiplicity="1" />
-    <End Type="cz2006anythingModel.ExchangeRate" Role="ExchangeRate" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MoneyChanger">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ExchangeRate">
-        <PropertyRef Name="MoneyChangerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Transaction_MoneyChanger">
-    <End Type="cz2006anythingModel.MoneyChanger" Role="MoneyChanger" Multiplicity="1" />
-    <End Type="cz2006anythingModel.Transaction" Role="Transaction" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MoneyChanger">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Transaction">
-        <PropertyRef Name="MoneyChangerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_User_MoneyChanger">
-    <End Type="cz2006anythingModel.MoneyChanger" Role="MoneyChanger" Multiplicity="0..1" />
-    <End Type="cz2006anythingModel.User" Role="User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MoneyChanger">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="MoneyChangerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
     <Property Type="Binary" Name="definition" Nullable="true" />
