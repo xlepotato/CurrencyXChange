@@ -221,3 +221,9 @@ D:\GitHub\CurrencyXChange\CZ2006Anything\obj\Debug\CZ2006Anything.csproj.CoreCom
 D:\GitHub\CurrencyXChange\CZ2006Anything\obj\Debug\CZ2006Anything.csproj.CopyComplete
 D:\GitHub\CurrencyXChange\CZ2006Anything\obj\Debug\CZ2006Anything.dll
 D:\GitHub\CurrencyXChange\CZ2006Anything\obj\Debug\CZ2006Anything.pdb
+C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\bin\Newtonsoft.Json.dll
+C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\bin\System.Net.Http.Formatting.dll
+C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\bin\System.Web.Http.dll
+C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\bin\Newtonsoft.Json.xml
+C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\bin\System.Net.Http.Formatting.xml
+C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\bin\System.Web.Http.xml

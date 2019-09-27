@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="D:\GitHub\CurrencyXChange\CZ2006Anything\obj\Debug\Package\PackageTmp" />
-  <setAcl path="D:\GitHub\CurrencyXChange\CZ2006Anything\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="D:\GitHub\CurrencyXChange\CZ2006Anything\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <IisApp path="C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\obj\Debug\Package\PackageTmp" />
+  <setAcl path="C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
 </sitemanifest>

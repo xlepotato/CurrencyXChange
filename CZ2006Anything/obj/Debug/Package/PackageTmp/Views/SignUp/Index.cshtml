@@ -68,29 +68,7 @@ Mobile Number:<input type="text" id="mobilenumber">
 <input type="button" id="btnRegister" value="Create Account">
 -->
 <label id="lblSuccess"></label>
-<script>
-    $("#btnRegister").click(function () {
-        Register();
-    });
-    function Register() {
-        var Data = {
-            Username: $("#username").val(),
-            Password: $("#password").val(),
-            MobileNumber: $("#mobilenumber").val()
-        }
-        $.ajax({
-            url: '@Url.Action("Register")',
-            data: Data,
-            typr: "GET",
-            contentType: "application/json;charset=UTF-8",
-            dataType: "json",
-            success: function (result) {
-                $("#lblSuccess").html("");
-                $("#lblSuccess").append(result);
-            }
-        });
-    }
-</script>
+
 
 <footer class="mainfooter" role="contentinfo">
     <div class="footer-middle">
