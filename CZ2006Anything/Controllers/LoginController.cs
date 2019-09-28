@@ -11,7 +11,6 @@ namespace CZ2006Anything.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            Session["Username"] = null;
             return View();
         }
         public ActionResult Login(string Username, string Password)
@@ -24,10 +23,6 @@ namespace CZ2006Anything.Controllers
                if (user == null)
                 {
                     message = "Invalid Login Credentials";
-                }
-               else
-                {
-                    Session["Username"] = user.Username;
                 }
                 return Json(message
                 , JsonRequestBehavior.AllowGet);

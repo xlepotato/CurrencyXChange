@@ -1,6 +1,6 @@
 ﻿.container{
-    width:100%;
-    margin:0px;
+   
+    
 }
 
 .switchTab{
@@ -19,5 +19,22 @@
     font-size: 18pt;
 }
 
+.row{
+    border: black solid 2px;
+    padding-top: 5em;
+}
 
+.card{
+    border: 2px solid red;
+    width: 22em;
+    margin-left: 8em;
+}
+
+#card1 {
+    
+}
+
+#card2 {
+    
+}
 

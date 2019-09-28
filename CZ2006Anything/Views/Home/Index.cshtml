@@ -2,30 +2,25 @@
 @{
        Layout = "/Views/Shared/HeaderWithButtons.cshtml";
 }
+<link href="~/Assets/Css/stylesheet.css" rel="stylesheet" />
 
-
-<div class="form-group">
-    <input type="text" class="form-control" id="tbExchangeFrom" value="1">
+<div class="container"> 
+    <div class="row">
+        @*currency conversion section*@
+        <div class="col-sm-6">
+            <div class="card" id="card1">
+                <div class="card-body">
+                    <input class="w3-input" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card" id="card2">
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">It's a broader card with text below as a natural lead-in to extra content. This content is a little longer.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="form-group">
-    <label for="sel1">Select list:</label>
-    <select class="form-control" id="selExchangeFrom">
-        @foreach (var x in Model)
-        {
-            <option>@x</option>
-        }
-    </select>
-</div>
-<div class="form-group">
-    <input type="text" class="form-control" id="tbExchangeTo" value="1">
-</div>
-<div class="form-group">
-    <label for="sel1">Select list:</label>
-    <select class="form-control" id="selExchangeTo">
-        @foreach (var x in Model)
-        {
-            <option>@x</option>
-        }
-    </select>
-</div>
-Market Rate:<label id="lblResult">1</label>
