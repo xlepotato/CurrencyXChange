@@ -72,6 +72,20 @@
         });
     }
     //Register Page
+    function validateUsername() {
+        var name = document.getElementById("username").value;
+
+        if (name.length == 0) {
+            producePrompt("This field is Required.", "usernamePrompt", "red");
+            return false;
+        }
+    }
+
+    function producePrompt(message, promptLocation, color) {
+        document.getElementById(promptLocation).innerHTML = message;
+        document.getElementById(promptLocation).style.color = color;
+    }
+
     $("#btnRegister").click(function () {
         Register();
     });
