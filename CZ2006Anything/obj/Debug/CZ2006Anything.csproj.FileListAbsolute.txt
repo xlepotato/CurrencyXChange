@@ -227,3 +227,9 @@ C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\bin\System.Web.Ht
 C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\bin\Newtonsoft.Json.xml
 C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\bin\System.Net.Http.Formatting.xml
 C:\Users\Owner\Documents\GitHub\CurrencyXChange\CZ2006Anything\bin\System.Web.Http.xml
+D:\GitHub\CurrencyXChange\CZ2006Anything\bin\Newtonsoft.Json.dll
+D:\GitHub\CurrencyXChange\CZ2006Anything\bin\System.Net.Http.Formatting.dll
+D:\GitHub\CurrencyXChange\CZ2006Anything\bin\System.Web.Http.dll
+D:\GitHub\CurrencyXChange\CZ2006Anything\bin\Newtonsoft.Json.xml
+D:\GitHub\CurrencyXChange\CZ2006Anything\bin\System.Net.Http.Formatting.xml
+D:\GitHub\CurrencyXChange\CZ2006Anything\bin\System.Web.Http.xml

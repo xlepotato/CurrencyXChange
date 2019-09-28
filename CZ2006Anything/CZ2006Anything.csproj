@@ -110,7 +110,6 @@
   <ItemGroup>
     <Content Include="Assets\Css\bootstrap.min.css" />
     <Content Include="Assets\Css\footer.css" />
-    <Content Include="Assets\Css\header2ss.css" />
     <Content Include="Assets\Css\stylesheet.css" />
     <Content Include="Assets\Images\cat.jpg" />
     <Content Include="Assets\Js\bootstrap.min.js" />
@@ -184,7 +183,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\MarketRate.cs" />
     <Compile Include="MoneyChanger.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -214,7 +212,7 @@
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Shared\HeaderLogoOnly.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
@@ -222,7 +220,8 @@
     <Content Include="Views\ScanQr\Index.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\Transactions\Detail.cshtml" />
-    <Content Include="Views\Shared\HeaderWithLogin.cshtml" />
+    <Content Include="Views\Shared\HeaderWithButtons.cshtml" />
+    <Content Include="Views\Shared\HeaderLoggedIn.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

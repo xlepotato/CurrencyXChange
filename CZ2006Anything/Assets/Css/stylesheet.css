@@ -1,24 +1,23 @@
 ﻿.container{
-    padding-top: 4%;
-    margin:auto;
-    width:50%;
+    width:100%;
+    margin:0px;
 }
 
-.col-sm-4 {
-    width: 50%;
-    height: 10%;
-    margin:auto;
-    padding:0;
+.switchTab{
+    padding-top: 2em;
+    padding-bottom:2em;
 }
 
+.tabs{
+    padding: 0px;
+}
 .activeNow{
-   float:right;
-   border:none;
-   font-size: 22pt;
-   
+    font-size: 18pt;
 }
 
 .inactiveNow{
-    padding-left: 10px;
-    font-size: 22pt;
+    font-size: 18pt;
 }
+
+
+
